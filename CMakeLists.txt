@@ -8,6 +8,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 enable_testing()
 
-add_subdirectory(qrumpir)
 add_subdirectory(state_machine)
+add_subdirectory(qrumpir)
 add_subdirectory(tests)
