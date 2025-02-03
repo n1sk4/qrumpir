@@ -4,9 +4,10 @@
 
 class Qrumpir;
 
-class QrumpirState{
+class State{
 public:
   virtual void enter(Qrumpir* qrumpir) = 0;
+  virtual void run(Qrumpir* qrumpir) = 0;
   virtual void exit(Qrumpir* qrumpir) = 0;
-  virtual ~QrumpirState() {};
+  virtual ~State() {};
 };

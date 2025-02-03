@@ -1,9 +1,6 @@
-#include "qrumpir.hpp"
-
-#include <iostream>
+#include "game.hpp"
 
 int main() {
-  std::cout << "Hello world!";
-  std::cin;
+  Game game;
   return 0;
 }

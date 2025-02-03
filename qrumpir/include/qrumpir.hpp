@@ -1,15 +1,24 @@
 #pragma once
 
-#include "qrumpir_state.hpp"
+#include "state.hpp"
+#include <memory>
 
-class QrumpirState;
+class State;
+
+struct QrumpirData {
+  virtual ~QrumpirData() = default;
+  unsigned long hunger    = 0;
+  unsigned long happiness = 0;
+  unsigned long energy    = 0;
+};
 
 class Qrumpir {
 public:
   Qrumpir();
-  QrumpirState* getCurrentState() const { return m_currentState; };
-  void setState(QrumpirState& newState);
+  State* getCurrentState() const { return m_currentState; };
+  void setState(State& newState);
+  std::shared_ptr<QrumpirData> m_data;
 
 private:
-  QrumpirState* m_currentState;
+  State* m_currentState;
 };
