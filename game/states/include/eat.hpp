@@ -1,8 +1,12 @@
 #pragma once
 
+#ifndef EAT_HPP
+#define EAT_HPP
+
+#include <iostream>
+
 #include "state.hpp"
 #include "qrumpir.hpp"
-#include <iostream>
 
 class Eat : public State {
 public:
@@ -11,8 +15,10 @@ public:
   void exit(Qrumpir* qrumpir) override;
   static State& getInstance();
 
-private:
+protected:
   Eat() {};
   Eat& operator=(const Eat& other) = delete;
   std::shared_ptr<QrumpirData> m_data;
 };
+
+#endif

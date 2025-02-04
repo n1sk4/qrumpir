@@ -1,18 +1,24 @@
 #pragma once
 
-#include "state.hpp"
-#include "qrumpir.hpp"
+#ifndef PLAY_HPP
+#define PLAY_HPP
+
 #include <iostream>
 
-class Sleep : public State {
+#include "state.hpp"
+#include "qrumpir.hpp"
+
+class Play : public State {
 public:
   void enter(Qrumpir* qrumpir) override;
   void run(Qrumpir* qrumpir) override;
   void exit(Qrumpir* qrumpir) override;
   static State& getInstance();
 
-private:
-  Sleep() {};
-  Sleep& operator=(const Sleep& other) = delete;
+protected:
+  Play() {};
+  Play& operator=(const Play& other) = delete;
   std::shared_ptr<QrumpirData> m_data;
 };
+
+#endif

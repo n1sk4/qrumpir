@@ -1,17 +1,28 @@
+#include "state.hpp"
 #include "qrumpir.hpp"
-#include "idle.hpp"
-#include "eat.hpp"
-#include "sleep.hpp"
-#include "play.hpp"
 
 Qrumpir::Qrumpir() {
-  m_currentState = &Sleep::getInstance();
   m_data = std::make_shared<QrumpirData>();
 }
 
 void Qrumpir::setState(State &newState) {
-  m_currentState->exit(this);
+  if (m_currentState) {
+    m_currentState->exit(this);
+  }
   m_currentState = &newState;
-  m_currentState->enter(this);
-  m_currentState->run(this);
+  if (m_currentState) {
+    m_currentState->enter(this);
+  }
 }
+
+void Qrumpir::run() {
+  while(m_isRunning) {
+    if (m_currentState) {
+      m_currentState->run(this);
+    }
+  }
+};
+
+void Qrumpir::stop() {
+  m_isRunning = false;
+};

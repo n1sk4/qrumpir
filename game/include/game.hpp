@@ -1,13 +1,18 @@
 #pragma once
 
+#ifndef GAME_HPP
+#define GAME_HPP
+
+#include <iostream>
+#include <memory>
+#include <thread>
+
 #include "idle.hpp"
 #include "eat.hpp"
 #include "sleep.hpp"
 #include "play.hpp"
+#include "cat_idle.hpp"
 #include "qrumpir.hpp"
-
-#include <iostream>
-#include <memory>
 
 class Game {
 public:
@@ -16,5 +21,9 @@ public:
 
 private:
   void init();
-  void processInput(char input, Qrumpir& qrumpir);
+  void processInput(Qrumpir& qrumpir);
+
+  Qrumpir m_qrumpir;
 };
+
+#endif

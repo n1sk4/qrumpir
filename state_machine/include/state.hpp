@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef STATE_HPP
+#define STATE_HPP
+
 #include "qrumpir.hpp"
 
 class Qrumpir;
@@ -11,3 +14,5 @@ public:
   virtual void exit(Qrumpir* qrumpir) = 0;
   virtual ~State() {};
 };
+
+#endif

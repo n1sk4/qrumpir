@@ -1,8 +1,12 @@
 #pragma once
 
+#ifndef IDLE_HPP
+#define IDLE_HPP
+
+#include <iostream>
+
 #include "state.hpp"
 #include "qrumpir.hpp"
-#include <iostream>
 
 class Idle : public State {
 public:
@@ -11,8 +15,10 @@ public:
   void exit(Qrumpir* qrumpir) override;
   static State& getInstance();
 
-private:
+protected:
   Idle() {};
   Idle& operator=(const Idle& other) = delete;
   std::shared_ptr<QrumpirData> m_data;
 };
+
+#endif
