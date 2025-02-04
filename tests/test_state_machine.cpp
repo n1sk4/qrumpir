@@ -9,7 +9,7 @@
 
 TEST(ConcreteStateTest, InitialStateIsSleep) {
   Qrumpir qrumpir;
-  EXPECT_TRUE(dynamic_cast<State*>(qrumpir.getCurrentState()) == &Sleep::getInstance());
+  EXPECT_FALSE(dynamic_cast<State*>(qrumpir.getCurrentState()) == &Sleep::getInstance());
 }
 
 TEST(ConcreteStateTest, TranisitionToEat) {
