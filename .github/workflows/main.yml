@@ -25,15 +25,24 @@ jobs:
 
       - name: Install dependencies (Linux)
         if: runner.os == 'Linux'
-        run: sudo apt update && sudo apt install -y cmake g++ ninja-build
+        run: |
+          sudo apt update
+          sudo apt install -y cmake g++-12 ninja-build
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 60
 
       - name: Install dependencies (macOS)
         if: runner.os == 'macOS'
-        run: brew install cmake ninja
+        run: |
+          brew install cmake ninja gcc@12
+          echo 'export PATH="/usr/local/opt/gcc@12/bin:$PATH"' >> ~/.zshrc
+          source ~/.zshrc
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
-        run: choco install cmake ninja --installargs 'ADD_CMAKE_TO_PATH=System' -y
+        run: |
+          choco install cmake ninja --installargs 'ADD_CMAKE_TO_PATH=System' -y
+          choco install mingw --version=12.2.0 -y
+          setx PATH "%PATH%;C:\Program Files\mingw-w64\bin"
 
       - name: Create Build Directory
         run: mkdir build
