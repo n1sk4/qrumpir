@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(UnitTests)
+project(UnitTests
+        VERSION 0.1)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -12,17 +13,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 file(GLOB TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
-file(GLOB GAME_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/../game/states/src/Eat.cpp" ${TEST_SOURCES})
-file(GLOB GAME_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/../game/states/src/Sleep.cpp" ${GAME_SOURCES})
-file(GLOB GAME_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/../game/states/src/Play.cpp" ${GAME_SOURCES})
 
-add_executable(UnitTests ${GAME_SOURCES})
+add_executable(${PROJECT_NAME} ${TEST_SOURCES})
 
-target_link_libraries(UnitTests PRIVATE QrumpirLib StateMachineLib GTest::gtest GTest::gtest_main)
+target_link_libraries(${PROJECT_NAME} PRIVATE QrumpirLib StateMachineLib GTest::gtest GTest::gtest_main)
 
 target_include_directories(
-  UnitTests PRIVATE 
-  ${CMAKE_CURRENT_SOURCE_DIR}/../game/states/include
+  ${PROJECT_NAME} PRIVATE 
 )
 
-add_test(NAME TestConcreteStates COMMAND UnitTests)
+add_test(NAME TestConcreteStates COMMAND ${PROJECT_NAME})
