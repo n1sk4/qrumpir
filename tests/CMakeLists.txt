@@ -20,6 +20,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE QrumpirLib StateMachineLib GTest::
 
 target_include_directories(
   ${PROJECT_NAME} PRIVATE 
+  ${PROJECT_SOURCE_DIR}/../game/states/include
 )
 
 add_test(NAME TestConcreteStates COMMAND ${PROJECT_NAME})
